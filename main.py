@@ -4,8 +4,6 @@ import constants
 
 pygame.init()
 
-
-# Просто комментарий
 def main():
     screen = pygame.display.set_mode((constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT))
 
@@ -19,7 +17,6 @@ def main():
         pygame.display.update()
 
     pygame.quit()
-
 
 if __name__ == "__main__":
     main()

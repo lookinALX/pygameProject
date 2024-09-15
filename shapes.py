@@ -25,12 +25,12 @@ class Shape:
     draw(self, surface):
         рисует  на поверхности
         surface - поверхность для отрисовки объекта
-    def move_x(self, speed):
-         скорость по оси x
-    def move_y(self, speed):
-         скорость по оси y
+    def move(self):
+        self.x += self.speed_x
+        self.y += self.speed_y
+        скорость по обоим ординатам
     def rotate(self, angle):
-          поворот фигуры в какую либо сторону
+          поворот фигуры по чесовой стрелке
     """
 
     def __init__(self, x: float, y: float, speed_x: float, speed_y: float, color=(255, 255, 255)):
@@ -52,7 +52,7 @@ class Shape:
 
 class Rectangle(Shape):
     """
-        Класс определяющий прямоугольник.
+                Класс определяющий прямоугольник.
 
         Атрибуты:
         color : tuple
@@ -64,12 +64,20 @@ class Rectangle(Shape):
         draw(self, surface):
             рисует объект на поверхности
             surface - поверхность для отрисовки объекта
-        def move_x(self, speed):
-              скорость по оси x
-        def move_y(self, speed):
-             скорость по оси y
-        def rotate(self, angle):
-             поворот фигуры в какую либо сторону
+            def move(self):
+        self.x += self.speed_x
+        self.y += self.speed_y
+        скорость по обоим ординатам
+                if self.x <= 0 or self.x + self.width >= constants.SCREEN_WIDTH:
+            self.speed_x = -self.speed_x
+
+        if self.y <= 0 or self.y + self.height >= constants.SCREEN_HEIGHT:
+            self.speed_y = -self.speed_y
+            если прямоугольник приближается к конця какой либо стороны окна то он отцкакивает
+
+            def rotate(self, surface, angle):
+        pygame.transform.rotate(surface, -angle)
+             поворот фигуры по чесовой стрелке
         """
     def __init__(self, color: tuple, x: float, y: float, width: float, height: float, speed_x=0, speed_y=0):
         super().__init__(x, y, speed_x, speed_y, color)
@@ -86,7 +94,11 @@ class Rectangle(Shape):
         if self.x <= 0 or self.x + self.width >= constants.SCREEN_WIDTH:
             self.speed_x = -self.speed_x
 
-        #TODO: Сделать для оси Y
+
+
+        if self.y <= 0 or self.y + self.height >= constants.SCREEN_HEIGHT:
+            self.speed_y = -self.speed_y
+
 
     def rotate(self, surface, angle):
         pygame.transform.rotate(surface, -angle)
@@ -94,7 +106,26 @@ class Rectangle(Shape):
 
 class Square(Rectangle):
     """
-    TODO: Заполнить по образцу выше (см. прямоугольник)
+     Класс определяющий квадрат
+
+        Атрибуты:
+        color : tuple
+            Цвет фигуры в формате (R, G, B).
+        #: дописать документ строчку
+        x : double
+            Координата по оси Х левого верхнего угла квадрата
+        Методы:
+        draw(self, surface):
+            рисует объект на поверхности
+            surface - поверхность для отрисовки объекта
+            def move(self):
+        self.x += self.speed_x
+        self.y += self.speed_y
+           скорость по обоим ординатам
+
+
+        def rotate(self, angle):
+             поворот фигуры по чесой стрелке
     """
     def __init__(self, color, x, y, size, speed_x=0, speed_y=0):
         super().__init__(color, x, y, size, size, speed_x, speed_y)
@@ -102,32 +133,59 @@ class Square(Rectangle):
         self.size = size
 
     def draw(self, surface):
-        # TODO: сделать!
-        pass
+        pygame.draw.rect(surface, self.color, (self.x, self.y, self.size , self.size))
+
 
     def move(self):
-        # TODO: сделать!
-        pass
+        self.x += self.speed_x
+        self.y += self.speed_y
 
     def rotate(self, surface, angle):
-        # TODO: сделать!
-        pass
+        pygame.transform.rotate(surface, -angle)
 
 
 class Circle(Shape):
     """
-        TODO: Заполнить по образцу выше (см. прямоугольник)
+         Класс определяющий круга.
+
+        Атрибуты:
+        color : tuple
+            Цвет фигуры в формате (R, G, B).
+        #: дописать документ строчку
+        x : double
+            Координата по оси Х левого верхнего угла круга и его радиус
+        Методы:
+        draw(self, surface):
+            рисует объект на поверхности
+            surface - поверхность для отрисовки объекта
+
+            def move(self):
+        self.x += self.speed_x
+        self.y += self.speed_y
+           скорость по обоим ординатам
+
+
+        def rotate(self, angle):
+             поворот фигуры по чесой стрелке
     """
     def __init__(self, color, x, y, r, speed_x=0, speed_y=0):
         super().__init__(self, x, y, speed_x, speed_y, color)
         self.r = r
 
     def draw(self, surface):
-        # TODO: сделать!
-        pass
+        pygame.draw.rect(surface, self.color, (self.x, self.y, self.r))
 
     def move(self):
-        pass
+        self.x += self.speed_x
+        self.y += self.speed_y
 
     def rotate(self, surface, angle):
-        pass
+        pygame.transform.rotate(surface, -angle)
+
+
+
+
+
+
+
+

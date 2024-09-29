@@ -170,7 +170,7 @@ class Circle(Shape):
     """
 
     def __init__(self, color, x, y, r, speed_x=0, speed_y=0):
-        super().__init__(self, x, y, speed_x, speed_y, color)
+        super().__init__(color , x, y, speed_x, speed_y)
         self.r = r
 
     def draw(self, surface):

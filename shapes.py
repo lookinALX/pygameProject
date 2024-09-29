@@ -79,6 +79,7 @@ class Rectangle(Shape):
         pygame.transform.rotate(surface, -angle)
              поворот фигуры по чесовой стрелке
         """
+
     def __init__(self, color: tuple, x: float, y: float, width: float, height: float, speed_x=0, speed_y=0):
         super().__init__(x, y, speed_x, speed_y, color)
         self.width = width
@@ -94,16 +95,14 @@ class Rectangle(Shape):
         if self.x <= 0 or self.x + self.width >= constants.SCREEN_WIDTH:
             self.speed_x = -self.speed_x
 
-
-
         if self.y <= 0 or self.y + self.height >= constants.SCREEN_HEIGHT:
             self.speed_y = -self.speed_y
-
 
     def rotate(self, surface, angle):
         pygame.transform.rotate(surface, -angle)
 
 
+# TODO: добавить в метод движения столкновение со стенкой
 class Square(Rectangle):
     """
      Класс определяющий квадрат
@@ -127,14 +126,14 @@ class Square(Rectangle):
         def rotate(self, angle):
              поворот фигуры по чесой стрелке
     """
+
     def __init__(self, color, x, y, size, speed_x=0, speed_y=0):
         super().__init__(color, x, y, size, size, speed_x, speed_y)
         self.size = size
         self.size = size
 
     def draw(self, surface):
-        pygame.draw.rect(surface, self.color, (self.x, self.y, self.size , self.size))
-
+        pygame.draw.rect(surface, self.color, (self.x, self.y, self.size, self.size))
 
     def move(self):
         self.x += self.speed_x
@@ -144,6 +143,7 @@ class Square(Rectangle):
         pygame.transform.rotate(surface, -angle)
 
 
+# TODO: добавить в метод движения столкновение со стенкой
 class Circle(Shape):
     """
          Класс определяющий круга.
@@ -168,6 +168,7 @@ class Circle(Shape):
         def rotate(self, angle):
              поворот фигуры по чесой стрелке
     """
+
     def __init__(self, color, x, y, r, speed_x=0, speed_y=0):
         super().__init__(self, x, y, speed_x, speed_y, color)
         self.r = r
@@ -181,11 +182,3 @@ class Circle(Shape):
 
     def rotate(self, surface, angle):
         pygame.transform.rotate(surface, -angle)
-
-
-
-
-
-
-
-

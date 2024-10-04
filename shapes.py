@@ -136,11 +136,20 @@ class Square(Rectangle):
         pygame.draw.rect(surface, self.color, (self.x, self.y, self.size, self.size))
 
     def move(self):
-        self.x += self.speed_x
-        self.y += self.speed_y
+        if (self.x < 500):
+          self.x += self.speed_x
+        else:
+            self.ч -= self.speed_ч
+
+        if (self.y < 500):
+          self.y += self.speed_y
+        else:
+            self.y -= self.speed_y
+
 
     def rotate(self, surface, angle):
         pygame.transform.rotate(surface, -angle)
+
 
 
 # TODO: добавить в метод движения столкновение со стенкой

@@ -136,15 +136,21 @@ class Square(Rectangle):
         pygame.draw.rect(surface, self.color, (self.x, self.y, self.size, self.size))
 
     def move(self):
-        if (self.x < 500):
-          self.x += self.speed_x
-        else:
-            self.ч -= self.speed_ч
 
-        if (self.y < 500):
-          self.y += self.speed_y
+        if( self.x < constants.SCREEN_WIDTH-self.x):
+            self.x += -self.speed_x
         else:
+            self.x += self.speed_x
+        if (self.y < constants.SCREEN_WIDTH - self.y):
             self.y -= self.speed_y
+        else:
+            self.y -= +self.speed_y
+
+
+
+
+
+
 
 
     def rotate(self, surface, angle):

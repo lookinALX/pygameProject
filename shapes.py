@@ -139,23 +139,14 @@ class Square(Rectangle):
         self.x += self.speed_x
         self.y += self.speed_y
 
-        if( self.x < constants.SCREEN_WIDTH-self.x or self.x <= 0):
-            self.x = -self.speed_x
+        if self.x + self.size > constants.SCREEN_WIDTH or self.x < 0:
+            self.speed_x = -self.speed_x
 
-        if (self.y < constants.SCREEN_WIDTH - self.y or self.y <= 0):
-            self.y = -self.speed_y
-
-
-
-
-
-
-
-
+        if self.y + self.size > constants.SCREEN_HEIGHT or self.y < 0:
+            self.speed_y = -self.speed_y
 
     def rotate(self, surface, angle):
         pygame.transform.rotate(surface, -angle)
-
 
 
 # TODO: добавить в метод движения столкновение со стенкой
@@ -185,7 +176,7 @@ class Circle(Shape):
     """
 
     def __init__(self, color, x, y, r, speed_x=0, speed_y=0):
-        super().__init__(color , x, y, speed_x, speed_y)
+        super().__init__(color, x, y, speed_x, speed_y)
         self.r = r
 
     def draw(self, surface):

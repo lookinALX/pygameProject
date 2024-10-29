@@ -102,7 +102,6 @@ class Rectangle(Shape):
         pygame.transform.rotate(surface, -angle)
 
 
-# TODO: добавить в метод движения столкновение со стенкой
 class Square(Rectangle):
     """
      Класс определяющий квадрат
@@ -139,23 +138,14 @@ class Square(Rectangle):
         self.x += self.speed_x
         self.y += self.speed_y
 
-        if( self.x <= constants.SCREEN_WIDTH-self.x or self.size <= 0):
+        if self.x + self.size > constants.SCREEN_WIDTH or self.x < 0:
             self.speed_x = -self.speed_x
 
-        if (self.y <= constants.SCREEN_HEIGHT - self.y or self.size <= 0):
+        if self.y + self.size > constants.SCREEN_HEIGHT or self.y < 0:
             self.speed_y = -self.speed_y
-
-
-
-
-
-
-
-
 
     def rotate(self, surface, angle):
         pygame.transform.rotate(surface, -angle)
-
 
 
 # TODO: добавить в метод движения столкновение со стенкой
@@ -184,24 +174,25 @@ class Circle(Shape):
              поворот фигуры по чесой стрелке
     """
 
-    def __init__(self, color, x, y, r, speed_x=0, speed_y=0):
-        super().__init__(color , x, y, speed_x, speed_y)
-        self.r = r
+    def __init__(self, color, x, y, radius, speed_x=0, speed_y=0):
+        super().__init__(color=color, x=x, y=y, speed_x=speed_x, speed_y=speed_y)
+        self.radius = radius
+        self.center = [self.x, self.y]
 
     def draw(self, surface):
-        pygame.draw.rect(surface, self.color, (self.x, self.y, self.r))
+        pygame.draw.circle(surface, color=self.color, center=tuple(self.center), radius=self.radius)
 
     def move(self):
+        self.x += self.speed_x
+        self.y += self.speed_y
+        self.center = [self.x, self.y]
 
+        # TODO: исправить условия столкновения со стенкой. сейчас не работает. Надо опириться на радиус и точку центра!
+        if self.x <= constants.SCREEN_WIDTH - self.x or self.size <= 0:
+            self.speed_x = -self.speed_x
 
-            self.x += self.speed_x
-            self.y += self.speed_y
-
-            if (self.x <= constants.SCREEN_WIDTH - self.x or self.size <= 0):
-                self.speed_x = -self.speed_x
-
-            if (self.y <= constants.SCREEN_HEIGHT - self.y or self.size <= 0):
-                self.speed_y = -self.speed_y
+        if self.y <= constants.SCREEN_HEIGHT - self.y or self.size <= 0:
+            self.speed_y = -self.speed_y
 
     def rotate(self, surface, angle):
         pygame.transform.rotate(surface, -angle)

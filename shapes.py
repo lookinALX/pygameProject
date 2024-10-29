@@ -139,11 +139,11 @@ class Square(Rectangle):
         self.x += self.speed_x
         self.y += self.speed_y
 
-        if( self.x < constants.SCREEN_WIDTH-self.x or self.x <= 0):
-            self.x = -self.speed_x
+        if( self.x <= constants.SCREEN_WIDTH-self.x or self.size <= 0):
+            self.speed_x = -self.speed_x
 
-        if (self.y < constants.SCREEN_WIDTH - self.y or self.y <= 0):
-            self.y = -self.speed_y
+        if (self.y <= constants.SCREEN_HEIGHT - self.y or self.size <= 0):
+            self.speed_y = -self.speed_y
 
 
 
@@ -192,8 +192,16 @@ class Circle(Shape):
         pygame.draw.rect(surface, self.color, (self.x, self.y, self.r))
 
     def move(self):
-        self.x += self.speed_x
-        self.y += self.speed_y
+
+
+            self.x += self.speed_x
+            self.y += self.speed_y
+
+            if (self.x <= constants.SCREEN_WIDTH - self.x or self.size <= 0):
+                self.speed_x = -self.speed_x
+
+            if (self.y <= constants.SCREEN_HEIGHT - self.y or self.size <= 0):
+                self.speed_y = -self.speed_y
 
     def rotate(self, surface, angle):
         pygame.transform.rotate(surface, -angle)

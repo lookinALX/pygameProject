@@ -187,12 +187,14 @@ class Circle(Shape):
         self.y += self.speed_y
         self.center = [self.x, self.y]
 
-        # TODO: исправить условия столкновения со стенкой. сейчас не работает. Надо опириться на радиус и точку центра!
-        if self.x <= constants.SCREEN_WIDTH - self.x or self.size <= 0:
+        if(self.x- self.radius <= 0 or self.x + self.radius >= constants.SCREEN_WIDTH ):
             self.speed_x = -self.speed_x
 
-        if self.y <= constants.SCREEN_HEIGHT - self.y or self.size <= 0:
+        if (self.y - self.radius <= 0 or self.y + self.radius >= constants.SCREEN_HEIGHT):
             self.speed_y = -self.speed_y
+
+
+
 
     def rotate(self, surface, angle):
         pygame.transform.rotate(surface, -angle)

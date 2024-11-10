@@ -147,8 +147,25 @@ class Square(Rectangle):
     def rotate(self, surface, angle):
         pygame.transform.rotate(surface, -angle)
 
+    def check_collision(self, other_rect):
+        """
+        Проверка коллизии с другим объектом.
 
-# TODO: добавить в метод движения столкновение со стенкой
+        Parameters:
+            other_rect (class Square): Прямоугольник другого объекта
+
+        Returns:
+            bool: True, если объекты пересекаются, иначе False
+        """
+        collision_detected = False
+        if (self.x + self.size >= other_rect.x and self.y + self.size >= other_rect.y) and (
+                other_rect.y + other_rect.size >= self.y and other_rect.x + other_rect.size >= self.x):
+            collision_detected = True
+            print("COLLISION!")
+        else:
+            collision_detected = False
+        return collision_detected
+
 class Circle(Shape):
     """
          Класс определяющий круга.

@@ -135,6 +135,7 @@ class Square(Rectangle):
         pygame.draw.rect(surface, self.color, (self.x, self.y, self.size, self.size))
 
     def move(self):
+<<<<<<< HEAD
         self.x += self.speed_x
         self.y += self.speed_y
 
@@ -144,6 +145,18 @@ class Square(Rectangle):
         if self.y + self.size > constants.SCREEN_HEIGHT or self.y < 0:
             self.speed_y = -self.speed_y
 
+=======
+        if self.x < 500:
+            self.x += self.speed_x
+        else:
+            self.ч -= self.speed_ч # Исправить
+
+        if (self.y < 500):
+            self.y += self.speed_y
+        else:
+            self.y -= self.speed_y
+
+>>>>>>> origin/master
     def rotate(self, surface, angle):
         pygame.transform.rotate(surface, -angle)
 
@@ -174,10 +187,16 @@ class Circle(Shape):
              поворот фигуры по чесой стрелке
     """
 
+<<<<<<< HEAD
     def __init__(self, color, x, y, radius, speed_x=0, speed_y=0):
         super().__init__(color=color, x=x, y=y, speed_x=speed_x, speed_y=speed_y)
         self.radius = radius
         self.center = [self.x, self.y]
+=======
+    def __init__(self, color, x, y, r, speed_x=0, speed_y=0):
+        super().__init__(color, x, y, speed_x, speed_y)
+        self.r = r
+>>>>>>> origin/master
 
     def draw(self, surface):
         pygame.draw.circle(surface, color=self.color, center=tuple(self.center), radius=self.radius)

@@ -102,7 +102,6 @@ class Rectangle(Shape):
         pygame.transform.rotate(surface, -angle)
 
 
-# TODO: добавить в метод движения столкновение со стенкой
 class Square(Rectangle):
     """
      Класс определяющий квадрат
@@ -175,16 +174,27 @@ class Circle(Shape):
              поворот фигуры по чесой стрелке
     """
 
-    def __init__(self, color, x, y, r, speed_x=0, speed_y=0):
-        super().__init__(color, x, y, speed_x, speed_y)
-        self.r = r
+    def __init__(self, color, x, y, radius, speed_x=0, speed_y=0):
+        super().__init__(color=color, x=x, y=y, speed_x=speed_x, speed_y=speed_y)
+        self.radius = radius
+        self.center = [self.x, self.y]
 
     def draw(self, surface):
-        pygame.draw.rect(surface, self.color, (self.x, self.y, self.r))
+        pygame.draw.circle(surface, color=self.color, center=tuple(self.center), radius=self.radius)
 
     def move(self):
         self.x += self.speed_x
         self.y += self.speed_y
+        self.center = [self.x, self.y]
+
+        if(self.x- self.radius <= 0 or self.x + self.radius >= constants.SCREEN_WIDTH ):
+            self.speed_x = -self.speed_x
+
+        if (self.y - self.radius <= 0 or self.y + self.radius >= constants.SCREEN_HEIGHT):
+            self.speed_y = -self.speed_y
+
+
+
 
     def rotate(self, surface, angle):
         pygame.transform.rotate(surface, -angle)

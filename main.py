@@ -10,7 +10,7 @@ def main():
     screen = pygame.display.set_mode((constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT))
 
     rectangle1 = shapes.Rectangle((0, 0, 255), 50, 50, 150, 100, 0.1, 0.1)
-    square1 = shapes.Square((255, 255, 0), 100, 100, 200, 0.1, 0.25)
+    square1 = shapes.Square((255, 255, 0), 100, 100, 200, 0.1, 0.1)
     circle1 = shapes.Circle((255, 0, 0), 100, 100, 100, 0.1, 0.25)
     # Бесконечный цикл программы
     running = True

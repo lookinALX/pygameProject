@@ -225,11 +225,8 @@ class Circle(Shape):
         if (self.y - self.radius <= 0 or self.y + self.radius >= constants.SCREEN_HEIGHT):
             self.speed_y = -self.speed_y
 
-    #def check_collision(self, other_circle):
 
 
 
-
-
-
-
+    def rotate(self, surface, angle):
+        pygame.transform.rotate(surface, -angle)

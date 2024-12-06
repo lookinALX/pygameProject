@@ -101,6 +101,21 @@ class Rectangle(Shape):
     def rotate(self, surface, angle):
         pygame.transform.rotate(surface, -angle)
 
+    def check_collision(self, other_rect):
+      collision_detected = False
+      if (self.x + self.width >= other_rect.x and self.y + self.height >= other_rect.y) and (
+            other_rect.y + other_rect.height >= self.y and other_rect.x + other_rect.width >= self.x):
+        collision_detected = True
+        print("COLLISION!")
+      else:
+        collision_detected = False
+      return collision_detected
+
+
+
+
+
+
 
 class Square(Rectangle):
     """
@@ -210,8 +225,11 @@ class Circle(Shape):
         if (self.y - self.radius <= 0 or self.y + self.radius >= constants.SCREEN_HEIGHT):
             self.speed_y = -self.speed_y
 
+    #def check_collision(self, other_circle):
 
 
 
-    def rotate(self, surface, angle):
-        pygame.transform.rotate(surface, -angle)
+
+
+
+

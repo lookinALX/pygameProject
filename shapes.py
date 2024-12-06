@@ -166,6 +166,7 @@ class Square(Rectangle):
             collision_detected = False
         return collision_detected
 
+
 class Circle(Shape):
     """
          Класс определяющий круга.
@@ -204,14 +205,11 @@ class Circle(Shape):
         self.y += self.speed_y
         self.center = [self.x, self.y]
 
-        if(self.x- self.radius <= 0 or self.x + self.radius >= constants.SCREEN_WIDTH ):
+        if (self.x - self.radius <= 0 or self.x + self.radius >= constants.SCREEN_WIDTH):
             self.speed_x = -self.speed_x
 
         if (self.y - self.radius <= 0 or self.y + self.radius >= constants.SCREEN_HEIGHT):
             self.speed_y = -self.speed_y
-
-
-
 
     def rotate(self, surface, angle):
         pygame.transform.rotate(surface, -angle)

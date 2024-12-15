@@ -170,7 +170,12 @@ class Circle(Shape):
         def rotate(self, angle):
              поворот фигуры по чесой стрелке
     """
-
+    # TODO: 1. вынести изменение скорости (направления движения) в отдельную функцию
+    #  "def change_direction(КАКИЕ ПАРАМЕТРЫ НА ВХОД?)"
+    # TODO: 2 заменить (смотри ниже BEGIN-END) код на новую функцию. ПРОВЕРИТЬ РАБОТАЕТ ЛИ ОТСКОК КАК РАНЬШЕ!
+    # TODO: 3 Написать функцию, которая заставляет шарик отскакивать от прямоугольника если произошла коллизия
+    #  (Используй уже написанные функции check_collision и change_direction).
+    #  Придумай нормальное название для новой функции
     def __init__(self, color, x, y, radius, speed_x=0, speed_y=0):
         super().__init__(color=color, x=x, y=y, speed_x=speed_x, speed_y=speed_y)
         self.radius = radius
@@ -183,12 +188,13 @@ class Circle(Shape):
         self.x += self.speed_x
         self.y += self.speed_y
         self.center = [self.x, self.y]
-
+        # TODO 2. BEGIN
         if self.x - self.radius <= 0 or self.x + self.radius >= constants.SCREEN_WIDTH:
             self.speed_x = -self.speed_x
 
         if self.y - self.radius <= 0 or self.y + self.radius >= constants.SCREEN_HEIGHT:
             self.speed_y = -self.speed_y
+        # TODO 2. END
 
     def rotate(self, surface, angle):
         pygame.transform.rotate(surface, -angle)

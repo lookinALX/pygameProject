@@ -26,13 +26,13 @@ def main():
         rectangle2.draw(screen)
         #rectangle1.draw(screen)
         #square1.draw(screen)
-        square2.draw(screen)
+        #square2.draw(screen)
         circle1.draw(screen)
         # Move objects
         #rectangle1.move()
         #rectangle1.check_collision(rectangle2)
-        square2.check_collision(rectangle2)
-        square2.move()
+        #square2.check_collision(rectangle2)
+        #square2.move()
         circle1.move()
         circle1.check_collision(rectangle2)
 

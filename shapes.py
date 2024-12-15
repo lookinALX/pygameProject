@@ -193,5 +193,14 @@ class Circle(Shape):
     def rotate(self, surface, angle):
         pygame.transform.rotate(surface, -angle)
 
-    def check_collision(self, other_rect):
-        pass
+    def check_collision(self, other_circle):
+        collision_detected = False
+        if (self.x + self.radius >= other_circle.x and self.y + self.radius >= other_circle.y) and (
+                other_circle.y + other_circle.radius >= self.y and other_circle.x + other_circle.radius >= self.x):
+            collision_detected = True
+            print("COLLISION!")
+        else:
+            collision_detected = False
+        return collision_detected
+
+    pass

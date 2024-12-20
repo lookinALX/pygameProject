@@ -11,8 +11,8 @@ def main():
     rectangle2 = shapes.Rectangle((255, 0, 255), 200, 200, 150, 100, 0.1, 0.1)
     # rectangle1 = shapes.Rectangle((0, 0, 255), 50, 50, 150, 100, 0.1, 0.1)
     # square1 = shapes.Square((255, 0, 0), 500, 300, 200, 0, 0)
-    square2 = shapes.Square((255, 255, 0), 100, 100, 20, 0.1, 0.05)
-    circle1 = shapes.Circle(color=(255, 0, 0), x=100, y=100, radius=20, speed_x=0.05, speed_y=0.05)
+    # square2 = shapes.Square((255, 255, 0), 100, 100, 20, 0.1, 0.05)
+    circle1 = shapes.Circle(color=(255, 0, 0), x=100, y=400, radius=20, speed_x=0.05, speed_y=0.05)
     # Бесконечный цикл программы
     running = True
     while running:
@@ -21,8 +21,7 @@ def main():
                 running = False
         screen.fill((255, 255, 255))
 
-        # TODO: отрисовать и двигать круг, квадрат
-        # Draw objects
+        """Draw objects"""
         rectangle2.draw(screen)
         # rectangle1.draw(screen)
         # square1.draw(screen)
@@ -34,9 +33,10 @@ def main():
         # square2.check_collision(rectangle2)
         # square2.move()
         circle1.move()
+        #rectangle2.move()
         #circle1.check_collision(rectangle2)
         #circle1.change_direction()
-        circle1.colldir(rectangle2)
+        circle1.change_direction_if_collision(rectangle2)
 
         pygame.display.update()
 

@@ -185,8 +185,14 @@ class Circle(Shape):
         pygame.draw.circle(surface, color=self.color, center=tuple(self.center), radius=self.radius)
 
     def move(self):
-        self.x += self.speed_x
-        self.y += self.speed_y
+       self.x += self.speed_x
+       self.y += self.speed_y
+
+
+
+
+    def change_direction(self):
+
         self.center = [self.x, self.y]
         # TODO 2. BEGIN
         if self.x - self.radius <= 0 or self.x + self.radius >= constants.SCREEN_WIDTH:
@@ -196,8 +202,15 @@ class Circle(Shape):
             self.speed_y = -self.speed_y
         # TODO 2. END
 
+
+
+
+
+
+
     def rotate(self, surface, angle):
         pygame.transform.rotate(surface, -angle)
+
 
     def check_collision(self, other_rect):
         collision_detected = False
@@ -209,4 +222,24 @@ class Circle(Shape):
         else:
             collision_detected = False
         return collision_detected
-    pass
+
+
+
+    def colldir(self, other_rect):
+        collision_detected = self.check_collision(other_rect)
+
+        if (collision_detected == True):
+
+            if (self.x - self.radius <= 0 or self.x + self.radius >= other_rect.width):
+                    self.speed_x = -self.speed_x
+
+            if (self.y - self.radius <= 0 or self.y + self.radius >= other_rect.height):
+                    self.speed_y = -self.speed_y
+
+
+
+
+
+
+
+

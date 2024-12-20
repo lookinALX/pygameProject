@@ -34,7 +34,9 @@ def main():
         # square2.check_collision(rectangle2)
         # square2.move()
         circle1.move()
-        circle1.check_collision(rectangle2)
+        #circle1.check_collision(rectangle2)
+        #circle1.change_direction()
+        circle1.colldir(rectangle2)
 
         pygame.display.update()
 

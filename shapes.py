@@ -121,8 +121,11 @@ class Rectangle(Shape):
                 print("COLLISION!")
         return collision_detected
 
-    # TODO: Создать функцию def drag(): Она вызывается если self.dragging = True и перемещает прямоугольник в
-    # направление перемещения мыши со скоростью мыши
+    def drag(self):
+        if self.dragging:
+            delta_pos = pygame.mouse.get_rel()
+            self.speed_y = delta_pos[1]
+            self.move()
 
 
 class Square(Rectangle):

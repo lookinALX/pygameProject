@@ -9,10 +9,14 @@ def main():
     # Ниже инициализация
     screen = pygame.display.set_mode((constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT))
     rectangle2 = shapes.Rectangle((255, 0, 255), 700, 200, 50, 150, 0, 0)
+    gates1 = shapes.Rectangle((0, 128, 0), 0, 0, 10, 600,0,0  )
+    gates2 = shapes.Rectangle((0, 128, 0), 790, 0, 10, 600, 0, 0)
+    middle = shapes.Rectangle((0, 0, 255), 400, 0, 5, 600, 0, 0)
+    bot = shapes.bot((255,0,255),0,0,50,150,0,0.6)
     # rectangle1 = shapes.Rectangle((0, 0, 255), 50, 50, 150, 100, 0.1, 0.1)
     # square1 = shapes.Square((255, 0, 0), 500, 300, 200, 0, 0)
     # square2 = shapes.Square((255, 255, 0), 100, 100, 20, 0.1, 0.05)
-    circle1 = shapes.Circle(color=(255, 0, 0), x=100, y=400, radius=20, speed_x=0.08, speed_y=0.08)
+    circle1 = shapes.Circle(color=(255, 0, 0), x=400, y=350, radius=20, speed_x=0.3, speed_y=0.3)
     # Бесконечный цикл программы
     running = True
     while running:
@@ -29,6 +33,12 @@ def main():
         screen.fill((255, 255, 255))
         """Draw objects"""
         rectangle2.draw(screen)
+        gates1.draw(screen)
+        gates2.draw(screen)
+
+
+        middle.draw(screen)
+
         rectangle2.drag()
         # rectangle1.draw(screen)
         # square1.draw(screen)

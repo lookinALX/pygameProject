@@ -128,6 +128,30 @@ class Rectangle(Shape):
             self.move()
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 class Square(Rectangle):
     """
         Класс определяющий квадрат
@@ -235,3 +259,21 @@ class Circle(Shape):
                 self.speed_x = -self.speed_x
             if collision_down or collision_up:
                 self.speed_y = -self.speed_y
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

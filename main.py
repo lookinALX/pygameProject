@@ -1,6 +1,7 @@
 import pygame
 import shapes
 import constants
+import bot
 
 pygame.init()
 
@@ -12,7 +13,8 @@ def main():
     gates1 = shapes.Rectangle((0, 128, 0), 0, 0, 10, 600,0,0  )
     gates2 = shapes.Rectangle((0, 128, 0), 790, 0, 10, 600, 0, 0)
     middle = shapes.Rectangle((0, 0, 255), 400, 0, 5, 600, 0, 0)
-    circle1 = shapes.Circle(color=(255, 0, 0), x=400, y=350, radius=20, speed_x=0.3, speed_y=0.3)
+    circle1 = shapes.Circle(color=(255, 0, 0), x=400, y=350, radius=20, speed_x=0.1, speed_y=0.1)
+    bot_rocket = bot.Bot((100, 50, 155), 90, 200, 50, 150, 0, 0.08)
     # Бесконечный цикл программы
     running = True
     while running:
@@ -28,10 +30,10 @@ def main():
 
         screen.fill((255, 255, 255))
         """Draw objects"""
+        bot_rocket.draw(screen)
         rectangle2.draw(screen)
         gates1.draw(screen)
         gates2.draw(screen)
-
         middle.draw(screen)
 
         rectangle2.drag()
@@ -39,6 +41,8 @@ def main():
         # Move objects
         circle1.move()
         circle1.change_direction_if_collision(rectangle2)
+        circle1.change_direction_if_collision(bot_rocket)
+        bot_rocket.follow_ball(circle1)
 
         pygame.display.update()
 

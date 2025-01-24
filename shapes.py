@@ -121,6 +121,7 @@ class Rectangle(Shape):
                 print("COLLISION!")
         return collision_detected
 
+    #TODO: Подумать если объект столкнулся с мячом то нельзя двигать объект в мяч
     def drag(self):
         if self.dragging:
             delta_pos = pygame.mouse.get_rel()
@@ -225,13 +226,7 @@ class Circle(Shape):
     def change_direction_if_collision(self, other_rect):
         collision_detected = self.check_collision(other_rect)
         if collision_detected:
-            is_x = (other_rect.y <= self.y <= other_rect.y + other_rect.height)
-            is_y = (other_rect.x <= self.x <= other_rect.x + other_rect.width)
-            collision_up = is_y and self.y + self.radius >= other_rect.y
-            collision_down = is_y and self.y - self.radius <= other_rect.y + other_rect.height
-            collision_left = is_x and self.x + self.radius >= other_rect.x
-            collision_right = is_x and self.x - self.radius <= other_rect.x + other_rect.width
-            if collision_right or collision_left:
+            if other_rect.y <= self.y <= other_rect.y + other_rect.height:
                 self.speed_x = -self.speed_x
-            if collision_down or collision_up:
+            else:
                 self.speed_y = -self.speed_y

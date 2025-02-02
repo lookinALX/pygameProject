@@ -102,6 +102,7 @@ class Rectangle(Shape):
     def rotate(self, surface, angle):
         pygame.transform.rotate(surface, -angle)
 
+    # TODO: Переписать на мяч!!! Сделать так чтобы было понятно когда коллизия вертикальная когда горизонтальная
     def check_collision(self, other_rect):
         collision_detected = False
         if (self.x + self.width >= other_rect.x and self.y + self.height >= other_rect.y) and (
@@ -111,22 +112,6 @@ class Rectangle(Shape):
         else:
             collision_detected = False
         return collision_detected
-
-    def check_collision_with_mouse(self, mouse_position):
-        collision_detected = False
-        if mouse_position is not None:
-            if (self.y < mouse_position[1] < self.y + self.height) and (
-                    self.x < mouse_position[0] < self.x + self.width):
-                collision_detected = True
-                print("COLLISION!")
-        return collision_detected
-
-    #TODO: Подумать если объект столкнулся с мячом то нельзя двигать объект в мяч
-    def drag(self):
-        if self.dragging:
-            delta_pos = pygame.mouse.get_rel()
-            self.speed_y = delta_pos[1]
-            self.move()
 
 
 class Square(Rectangle):

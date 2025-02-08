@@ -16,7 +16,6 @@ class Player(shapes.Rectangle):
             if (self.y < mouse_position[1] < self.y + self.height) and (
                     self.x < mouse_position[0] < self.x + self.width):
                 collision_detected = True
-                print("COLLISION!")
         return collision_detected
 
     def drag(self):

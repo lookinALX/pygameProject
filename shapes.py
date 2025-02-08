@@ -4,7 +4,7 @@
 
 import pygame
 import random
-import math
+from math import fabs
 import constants
 
 pygame.init()  # Запускаем движок
@@ -102,17 +102,6 @@ class Rectangle(Shape):
     def rotate(self, surface, angle):
         pygame.transform.rotate(surface, -angle)
 
-    # TODO: Переписать на мяч!!! Сделать так чтобы было понятно когда коллизия вертикальная когда горизонтальная
-    def check_collision(self, other_rect):
-        collision_detected = False
-        if (self.x + self.width >= other_rect.x and self.y + self.height >= other_rect.y) and (
-                other_rect.y + other_rect.height >= self.y and other_rect.x + other_rect.width >= self.x):
-            collision_detected = True
-            print("COLLISION!")
-        else:
-            collision_detected = False
-        return collision_detected
-
 
 class Square(Rectangle):
     """
@@ -135,7 +124,7 @@ class Square(Rectangle):
 
 
         def rotate(self, angle):
-             поворот фигуры по чесой стрелке
+             поворот фигуры по часой стрелке
     """
 
     def __init__(self, color, x, y, size, speed_x=0, speed_y=0):
@@ -170,7 +159,7 @@ class Circle(Shape):
 
 
         def rotate(self, angle):
-             поворот фигуры по чесой стрелке
+             поворот фигуры по часой стрелке
     """
 
     def __init__(self, color, x, y, radius, speed_x=0, speed_y=0):
@@ -185,33 +174,6 @@ class Circle(Shape):
         self.x += self.speed_x
         self.y += self.speed_y
         self.center = [self.x, self.y]
-        self.change_direction_if_out_of_window()
-
-    def change_direction_if_out_of_window(self):
-        self.center = [self.x, self.y]
-        if self.x - self.radius <= 0 or self.x + self.radius >= constants.SCREEN_WIDTH:
-            self.speed_x = -self.speed_x
-        if self.y - self.radius <= 0 or self.y + self.radius >= constants.SCREEN_HEIGHT:
-            self.speed_y = -self.speed_y
 
     def rotate(self, surface, angle):
         pygame.transform.rotate(surface, -angle)
-
-    def check_collision(self, other_rect):
-        collision_detected = False
-        if ((self.x + self.radius >= other_rect.x and self.y + self.radius >= other_rect.y)
-                and (self.x - self.radius < other_rect.x + other_rect.width and
-                     self.y - self.radius < other_rect.y + other_rect.height)):
-            collision_detected = True
-            print("COLLISION!")
-        else:
-            collision_detected = False
-        return collision_detected
-
-    def change_direction_if_collision(self, other_rect):
-        collision_detected = self.check_collision(other_rect)
-        if collision_detected:
-            if other_rect.y <= self.y <= other_rect.y + other_rect.height:
-                self.speed_x = -self.speed_x
-            else:
-                self.speed_y = -self.speed_y

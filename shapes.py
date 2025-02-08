@@ -4,7 +4,7 @@
 
 import pygame
 import random
-import math
+from math import fabs
 import constants
 
 pygame.init()  # Запускаем движок
@@ -102,31 +102,6 @@ class Rectangle(Shape):
     def rotate(self, surface, angle):
         pygame.transform.rotate(surface, -angle)
 
-    def check_collision(self, other_rect):
-        collision_detected = False
-        if (self.x + self.width >= other_rect.x and self.y + self.height >= other_rect.y) and (
-                other_rect.y + other_rect.height >= self.y and other_rect.x + other_rect.width >= self.x):
-            collision_detected = True
-            print("COLLISION!")
-        else:
-            collision_detected = False
-        return collision_detected
-
-    def check_collision_with_mouse(self, mouse_position):
-        collision_detected = False
-        if mouse_position is not None:
-            if (self.y < mouse_position[1] < self.y + self.height) and (
-                    self.x < mouse_position[0] < self.x + self.width):
-                collision_detected = True
-                print("COLLISION!")
-        return collision_detected
-
-    def drag(self):
-        if self.dragging:
-            delta_pos = pygame.mouse.get_rel()
-            self.speed_y = delta_pos[1]
-            self.move()
-
 
 class Square(Rectangle):
     """
@@ -149,7 +124,7 @@ class Square(Rectangle):
 
 
         def rotate(self, angle):
-             поворот фигуры по чесой стрелке
+             поворот фигуры по часой стрелке
     """
 
     def __init__(self, color, x, y, size, speed_x=0, speed_y=0):
@@ -184,7 +159,7 @@ class Circle(Shape):
 
 
         def rotate(self, angle):
-             поворот фигуры по чесой стрелке
+             поворот фигуры по часой стрелке
     """
 
     def __init__(self, color, x, y, radius, speed_x=0, speed_y=0):
@@ -199,39 +174,6 @@ class Circle(Shape):
         self.x += self.speed_x
         self.y += self.speed_y
         self.center = [self.x, self.y]
-        self.change_direction_if_out_of_window()
-
-    def change_direction_if_out_of_window(self):
-        self.center = [self.x, self.y]
-        if self.x - self.radius <= 0 or self.x + self.radius >= constants.SCREEN_WIDTH:
-            self.speed_x = -self.speed_x
-        if self.y - self.radius <= 0 or self.y + self.radius >= constants.SCREEN_HEIGHT:
-            self.speed_y = -self.speed_y
 
     def rotate(self, surface, angle):
         pygame.transform.rotate(surface, -angle)
-
-    def check_collision(self, other_rect):
-        collision_detected = False
-        if ((self.x + self.radius >= other_rect.x and self.y + self.radius >= other_rect.y)
-                and (self.x - self.radius < other_rect.x + other_rect.width and
-                     self.y - self.radius < other_rect.y + other_rect.height)):
-            collision_detected = True
-            print("COLLISION!")
-        else:
-            collision_detected = False
-        return collision_detected
-
-    def change_direction_if_collision(self, other_rect):
-        collision_detected = self.check_collision(other_rect)
-        if collision_detected:
-            is_x = (other_rect.y <= self.y <= other_rect.y + other_rect.height)
-            is_y = (other_rect.x <= self.x <= other_rect.x + other_rect.width)
-            collision_up = is_y and self.y + self.radius >= other_rect.y
-            collision_down = is_y and self.y - self.radius <= other_rect.y + other_rect.height
-            collision_left = is_x and self.x + self.radius >= other_rect.x
-            collision_right = is_x and self.x - self.radius <= other_rect.x + other_rect.width
-            if collision_right or collision_left:
-                self.speed_x = -self.speed_x
-            if collision_down or collision_up:
-                self.speed_y = -self.speed_y

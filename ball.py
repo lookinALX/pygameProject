@@ -16,13 +16,13 @@ class Ball(Circle):
         self.change_direction_if_out_of_window()
 
     def change_direction_if_out_of_window(self):
-        self.center = [self.x, self.y]
         if self.x - self.radius <= 0 or self.x + self.radius >= constants.SCREEN_WIDTH:
             self.speed_x = -self.speed_x
-            self.x += self.radius * 0.01 * self.speed_x / abs(self.speed_x)
+            self.x += self.radius * 0.5 * self.speed_x / abs(self.speed_x)
         if self.y - self.radius <= 0 or self.y + self.radius >= constants.SCREEN_HEIGHT:
             self.speed_y = -self.speed_y
-            self.y += self.radius * 0.01 * self.speed_y / abs(self.speed_y)
+            self.y += self.radius * 0.5 * (self.speed_y / abs(self.speed_y))
+        self.center = [self.x, self.y]
 
     def check_collision(self, other_rect):
         # Находим ближайшую точку от прямоугольника к мячу

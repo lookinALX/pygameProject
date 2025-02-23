@@ -30,7 +30,7 @@ class Shape:
         self.y += self.speed_y
         скорость по обоим ординатам
     def rotate(self, angle):
-          поворот фигуры по чесовой стрелке
+          поворот фигуры по часовой стрелке
     """
 
     def __init__(self, x: float, y: float, speed_x: float, speed_y: float, color=(255, 255, 255)):
@@ -73,11 +73,11 @@ class Rectangle(Shape):
 
         if self.y <= 0 or self.y + self.height >= constants.SCREEN_HEIGHT:
             self.speed_y = -self.speed_y
-            если прямоугольник приближается к конця какой либо стороны окна то он отцкакивает
+            если прямоугольник приближается к концу какой либо стороны окна то он отцкакивает
 
             def rotate(self, surface, angle):
         pygame.transform.rotate(surface, -angle)
-             поворот фигуры по чесовой стрелке
+             поворот фигуры по часовой стрелке
         """
 
     def __init__(self, color: tuple, x: float, y: float, width: float, height: float, speed_x=0, speed_y=0):
@@ -124,7 +124,7 @@ class Square(Rectangle):
 
 
         def rotate(self, angle):
-             поворот фигуры по часой стрелке
+             поворот фигуры по часовой стрелке
     """
 
     def __init__(self, color, x, y, size, speed_x=0, speed_y=0):
@@ -159,7 +159,7 @@ class Circle(Shape):
 
 
         def rotate(self, angle):
-             поворот фигуры по часой стрелке
+             поворот фигуры по часовой стрелке
     """
 
     def __init__(self, color, x, y, radius, speed_x=0, speed_y=0):

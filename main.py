@@ -11,6 +11,7 @@ pygame.init()
 def main():
     # Ниже инициализация
     screen = pygame.display.set_mode((constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT))
+    # TODO: заменить прямоугольник на новый класс ворота
     gates1 = shapes.Rectangle((0, 128, 0), 0, 0, 10, 600,0,0  )
     gates2 = shapes.Rectangle((0, 128, 0), 790, 0, 10, 600, 0, 0)
     middle = shapes.Rectangle((0, 0, 255), 400, 0, 5, 600, 0, 0)
@@ -46,6 +47,8 @@ def main():
         game_ball.change_direction_if_collision(bot_rocket)
         bot_rocket.follow_ball(game_ball)
 
+        #TODO: Вызвать функцию проверки коллизии у ворот с мячом
+        #TODO: Если есть коллизия, то печатать счет (например 0:1)
         pygame.display.update()
 
     pygame.quit()

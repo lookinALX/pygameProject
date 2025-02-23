@@ -89,6 +89,24 @@ class Rectangle(Shape):
     def draw(self, surface):
         pygame.draw.rect(surface, self.color, (self.x, self.y, self.width, self.height))
 
+
+    def check_collision(self, other_circle, r):
+
+        nearest_x = max(other_circle.x, min(self.x, other_circle.x + other_circle.width))
+        nearest_y = max(other_circle.y, min(self.y, other_circle.y + other_circle.height))
+        check_collision = True
+        if(check_collision == True):
+            print("C")
+
+
+
+
+
+
+
+
+
+
     def move(self):
         self.x += self.speed_x
         self.y += self.speed_y

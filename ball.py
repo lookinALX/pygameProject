@@ -64,3 +64,8 @@ class Ball(Circle):
                     self.x = other_rect.x - self.radius - 1  # Выносим мяч влево
                 else:
                     self.x = other_rect.x + other_rect.width + self.radius + 1  # Выносим мяч вправо
+
+
+
+
+

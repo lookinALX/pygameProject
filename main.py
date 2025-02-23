@@ -14,7 +14,7 @@ def main():
     gates1 = shapes.Rectangle((0, 128, 0), 0, 0, 10, 600,0,0  )
     gates2 = shapes.Rectangle((0, 128, 0), 790, 0, 10, 600, 0, 0)
     middle = shapes.Rectangle((0, 0, 255), 400, 0, 5, 600, 0, 0)
-    game_ball = ball.Ball(color=(255, 0, 0), x=720, y=50, radius=20, speed_x=0.05, speed_y=0.05)
+    game_ball = ball.Ball(color=(255, 0, 0), x=720, y=50, radius=20, speed_x=0.1, speed_y=0.1)
     main_player = player.Player((255, 0, 255),700, 200, 50, 150, 0, 0)
     bot_rocket = bot.Bot((100, 50, 155), 90, 200, 50, 150, 0, 0.08)
     # Бесконечный цикл программы
@@ -49,6 +49,17 @@ def main():
         pygame.display.update()
 
     pygame.quit()
+
+
+
+
+
+
+
+
+
+
+
 
 
 if __name__ == "__main__":

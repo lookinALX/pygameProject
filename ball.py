@@ -23,7 +23,6 @@ class Ball(Circle):
         if self.y - self.radius <= 0 or self.y + self.radius >= constants.SCREEN_HEIGHT:
             self.speed_y = -self.speed_y
             self.y += self.radius * 0.01 * self.speed_y / abs(self.speed_y)
-
     def check_collision(self, other_rect):
         # Находим ближайшую точку от прямоугольника к мячу
         nearest_x = max(other_rect.x, min(self.x, other_rect.x + other_rect.width))
@@ -64,8 +63,3 @@ class Ball(Circle):
                     self.x = other_rect.x - self.radius - 1  # Выносим мяч влево
                 else:
                     self.x = other_rect.x + other_rect.width + self.radius + 1  # Выносим мяч вправо
-
-
-
-
-

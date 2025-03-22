@@ -4,6 +4,7 @@ import constants
 import bot
 import ball
 import player
+import gate
 
 pygame.init()
 
@@ -11,13 +12,12 @@ pygame.init()
 def main():
     # Ниже инициализация
     screen = pygame.display.set_mode((constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT))
-    # TODO: заменить прям оугольник на новый класс ворота
-    gates1 = shapes.gate((100,50,155), 0,0 , 100,600 )
-    gates2 = shapes.gate((100,50,155), 0,0 , 100,600 )
+    gates1 = gate.Gate((100,50,155), 0,0 , 10,constants.SCREEN_HEIGHT )
+    gates2 = gate.Gate((100,50,155), constants.SCREEN_WIDTH - 10,0 , 10,constants.SCREEN_HEIGHT )
     middle = shapes.Rectangle((0, 0, 255), 400, 0, 5, 600, 0, 0)
     game_ball = ball.Ball(color=(255, 0, 0), x=720, y=50, radius=20, speed_x=0.05, speed_y=0.1)
     main_player = player.Player((255, 0, 255),700, 200, 50, 150, 0, 0)
-    bot_rocket = bot.Bot((100, 50, 155), 90, 200, 50, 150, 0, 0.08)
+    bot_rocket = bot.Bot((100, 50, 155), 50, 200, 50, 150, 0, 0.08)
     # Бесконечный цикл программы
     running = True
     while running:

@@ -19,7 +19,10 @@ class Ball(Circle):
         if self.x - self.radius <= 0 or self.x + self.radius >= constants.SCREEN_WIDTH:
             self.speed_x = -self.speed_x
             self.x += self.radius * 0.5 * self.speed_x / abs(self.speed_x)
-        if self.y - self.radius <= 0 or self.y + self.radius >= constants.SCREEN_HEIGHT:
+        if self.y - self.radius <= 0:
+            self.speed_y = -self.speed_y
+            self.y += self.radius * 0.5 * (self.speed_y / abs(self.speed_y))
+        if self.y + self.radius >= constants.SCREEN_HEIGHT + 20:
             self.speed_y = -self.speed_y
             self.y += self.radius * 0.5 * (self.speed_y / abs(self.speed_y))
         self.center = [self.x, self.y]

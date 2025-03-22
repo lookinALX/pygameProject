@@ -11,11 +11,11 @@ pygame.init()
 def main():
     # Ниже инициализация
     screen = pygame.display.set_mode((constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT))
-    # TODO: заменить прямоугольник на новый класс ворота
-    gates1 = shapes.Rectangle((0, 128, 0), 0, 0, 10, 600,0,0  )
-    gates2 = shapes.Rectangle((0, 128, 0), 790, 0, 10, 600, 0, 0)
+    # TODO: заменить прям оугольник на новый класс ворота
+    gates1 = shapes.gate((100,50,155), 0,0 , 100,600 )
+    gates2 = shapes.gate((100,50,155), 0,0 , 100,600 )
     middle = shapes.Rectangle((0, 0, 255), 400, 0, 5, 600, 0, 0)
-    game_ball = ball.Ball(color=(255, 0, 0), x=720, y=50, radius=20, speed_x=0.05, speed_y=0.05)
+    game_ball = ball.Ball(color=(255, 0, 0), x=720, y=50, radius=20, speed_x=0.05, speed_y=0.1)
     main_player = player.Player((255, 0, 255),700, 200, 50, 150, 0, 0)
     bot_rocket = bot.Bot((100, 50, 155), 90, 200, 50, 150, 0, 0.08)
     # Бесконечный цикл программы

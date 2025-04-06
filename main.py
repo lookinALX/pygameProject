@@ -46,7 +46,7 @@ def main():
         game_ball.change_direction_if_collision(main_player)
         game_ball.change_direction_if_collision(bot_rocket)
         bot_rocket.follow_ball(game_ball)
-
+        print(gates1.score(game_ball))
         #TODO: Вызвать функцию проверки коллизии у ворот с мячом
         #TODO: Если есть коллизия, то печатать счет (например 0:1)
         pygame.display.update()

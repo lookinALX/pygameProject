@@ -18,6 +18,10 @@ def main():
     game_ball = ball.Ball(color=(255, 0, 0), x=720, y=50, radius=20, speed_x=0.05, speed_y=0.1)
     main_player = player.Player((255, 0, 255),700, 200, 50, 150, 0, 0)
     bot_rocket = bot.Bot((100, 50, 155), 50, 200, 50, 150, 0, 0.08)
+
+    # шрифт
+    font = pygame.font.SysFont(None, 48)
+    text_surface = font.render("Hello World!", True, (0,0,0))
     # Бесконечный цикл программы
     running = True
     while running:
@@ -33,6 +37,9 @@ def main():
 
         screen.fill((255, 255, 255))
         """Draw objects"""
+
+        screen.blit(text_surface, (constants.SCREEN_WIDTH/2, constants.SCREEN_HEIGHT/2))
+
         bot_rocket.draw(screen)
         main_player.draw(screen)
         gates1.draw(screen)
@@ -46,9 +53,11 @@ def main():
         game_ball.change_direction_if_collision(main_player)
         game_ball.change_direction_if_collision(bot_rocket)
         bot_rocket.follow_ball(game_ball)
-        print(gates1.score(game_ball))
-        #TODO: Вызвать функцию проверки коллизии у ворот с мячом
-        #TODO: Если есть коллизия, то печатать счет (например 0:1)
+        if gates1.score(game_ball):
+            print("GOAL gates 1!")
+        if gates2.score(game_ball):
+            print("GOAL gates 2!")
+
         pygame.display.update()
 
     pygame.quit()

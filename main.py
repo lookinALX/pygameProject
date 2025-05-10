@@ -5,7 +5,7 @@ import bot
 import ball
 import player
 import gate
-
+import scoreboard
 pygame.init()
 
 
@@ -54,13 +54,10 @@ def main():
         game_ball.change_direction_if_collision(bot_rocket)
         bot_rocket.follow_ball(game_ball)
         if gates1.score(game_ball):
-            print("GOAL gates 1!")
+            scoreboard.ff()
+
         if gates2.score(game_ball):
-            print("GOAL gates 2!")
-
-        pygame.display.update()
-
-    pygame.quit()
+            scoreboard.ff()
 
 
 if __name__ == "__main__":

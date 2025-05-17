@@ -5,7 +5,7 @@ import bot
 import ball
 import player
 import gate
-import scoreboard
+import game_scoreboard
 pygame.init()
 
 
@@ -48,16 +48,17 @@ def main():
 
         main_player.drag()
         game_ball.draw(screen)
-        # Move objects
-        game_ball.move()
-        game_ball.change_direction_if_collision(main_player)
-        game_ball.change_direction_if_collision(bot_rocket)
-        bot_rocket.follow_ball(game_ball)
-        if gates1.score(game_ball):
-            scoreboard.ff()
 
-        if gates2.score(game_ball):
-            scoreboard.ff()
+        if not game_scoreboard.scoreboard.game_paused:
+            game_ball.move()
+            game_ball.change_direction_if_collision(main_player)
+            game_ball.change_direction_if_collision(bot_rocket)
+            bot_rocket.follow_ball(game_ball)
+            if gates1.score(game_ball):
+                game_scoreboard.scoreboard.display_screen_overplay(screen, left_gate_scored = False, right_gate_scored = True)
+
+            if gates2.score(game_ball):
+                game_scoreboard.scoreboard.display_screen_overplay(screen, left_gate_scored = True, right_gate_scored = False)
 
 
 if __name__ == "__main__":

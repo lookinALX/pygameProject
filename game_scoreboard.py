@@ -7,20 +7,47 @@ class Scoreboard:
         self.player_score = 0
         self.bot_score = 0
         self.game_paused = False
+        self.game_score = True
         self.font = pygame.font.SysFont(None, 48)
 
     def game_pause(self):
         self.game_paused = True
 
-    def update_player_score(self):
+    def update_player_score(self, ball):
         self.game_pause()
+        if(ball.heck_collision_with_ball == True and ball.x < 10):
+            self.player_score =+ 1
+
+
+
+
+
+
         #TODO: Изменять счет игрока на 1
 
-    def update_bot_score(self):
+    def update_bot_score(self, ball):
         self.game_pause()
+        if (ball.heck_collision_with_ball == True and ball.x > 790):
+            self.bot_score =+ 1
+
+
+
+
+
         #TODO: Изменять счет бота на 1
 
-    def draw_pause_screen(self, screen):
+    def draw_pause_screen(screen ):
+
+        pygame.display.update()
+        font = pygame.font.SysFont(None, 48)
+        text_surface = font.render("Hello World!", True, (0, 0, 0))
+
+        screen.fill((255, 255, 0))
+        screen.blit(text_surface, (0, 100))
+        for event in pygame.event.get():
+
+
+
         #TODO: Создать окно паузы на котором будет текст со счетом и текст кто сейчас забил
         pass
 

@@ -58,7 +58,8 @@ def main():
                 game_scoreboard.scoreboard.display_screen_overplay(screen, left_gate_scored = False, right_gate_scored = True)
 
             if gates2.score(game_ball):
-                game_scoreboard.scoreboard.display_screen_overplay(screen, left_gate_scored = True, right_gate_scored = False)
+                game_scoreboard.scoreboard.display_screen_overplay(screen, left_gate_scored = True, right_gate_scored = False
+
 
 
 if __name__ == "__main__":

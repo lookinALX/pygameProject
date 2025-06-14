@@ -10,6 +10,8 @@ class Bot(shapes.Rectangle):
     def draw(self, surface):
         pygame.draw.rect(surface, self.color, (self.x, self.y, self.width, self.height))
 
+
+    #TODO: понять что тут происходит!
     def follow_ball(self, ball: shapes.Circle):
         a = 0
         half_field = constants.SCREEN_WIDTH / 2

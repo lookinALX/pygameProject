@@ -1,4 +1,5 @@
 import  pygame
+import shapes
 
 import constants
 
@@ -32,26 +33,19 @@ class Scoreboard:
         overlay = pygame.Surface((constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT), pygame.SRCALPHA)
         overlay.fill((0,0,0, 150))
         screen.blit(overlay,(0,0))
-        tex = (f" БОТ {self.bot_score}: {self.player_score} ИГРОК")
 
+        tex = (f" БОТ {self.bot_score}: {self.player_score} ИГРОК")
 
         font = pygame.font.SysFont(None, 48)
         text_surface = font.render(tex,True, (111, 0, 0))
+
+        #TODO: выровнять текст и рамку по центру
+
+        background_rect = shapes.Rectangle((255,255,255),200,
+                                           350,300, 50)
+        background_rect.draw(screen)
+
         screen.blit(text_surface, (200, 350))
-
-
-
-
-
-
-
-
-
-
-        # TODO: ВЫВЕСТИ ТЕКСТ ГОЛ И СЧЕТ!
-
-
-
 
 # Не трогать
 scoreboard = Scoreboard()

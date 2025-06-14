@@ -11,7 +11,8 @@ class Scoreboard:
         self.game_paused = False
         self.game_score = True
         self.font = pygame.font.SysFont(None, 48)
-
+        self.sco = False
+        self.sc = False
     def game_pause(self):
         self.game_paused = True
 
@@ -20,17 +21,37 @@ class Scoreboard:
 
     def update_player_score(self):
         self.game_pause()
-        self.player_score =+ 1
+        self.player_score += 1
 
     def update_bot_score(self):
         self.game_pause()
-        self.bot_score =+ 1
+        self.bot_score += 1
 
-    def draw_pause_screen(self, screen):
+    def draw_pause_screen(self, screen ):
+
         overlay = pygame.Surface((constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT), pygame.SRCALPHA)
         overlay.fill((0,0,0, 150))
         screen.blit(overlay,(0,0))
+        tex = (f" БОТ {self.bot_score}: {self.player_score} ИГРОК")
+
+
+        font = pygame.font.SysFont(None, 48)
+        text_surface = font.render(tex,True, (111, 0, 0))
+        screen.blit(text_surface, (200, 350))
+
+
+
+
+
+
+
+
+
+
         # TODO: ВЫВЕСТИ ТЕКСТ ГОЛ И СЧЕТ!
+
+
+
 
 # Не трогать
 scoreboard = Scoreboard()

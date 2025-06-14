@@ -15,7 +15,7 @@ def main():
     gates1 = gate.Gate((100,50,155), 0,0 , 10,constants.SCREEN_HEIGHT )
     gates2 = gate.Gate((100,50,155), constants.SCREEN_WIDTH - 10,0 , 10,constants.SCREEN_HEIGHT )
     middle = shapes.Rectangle((0, 0, 255), 400, 0, 5, 600, 0, 0)
-    game_ball = ball.Ball(color=(255, 0, 0), x=320, y=50, radius=20, speed_x=0.05, speed_y=0.1)
+    game_ball = ball.Ball(color=(255, 0, 0), x=320, y=50, radius=20, speed_x=0.5 , speed_y=0.5)
     main_player = player.Player((255, 0, 255),700, 200, 50, 150, 0, 0)
     bot_rocket = bot.Bot((100, 50, 155), 50, 200, 50, 150, 0, 0.08)
 
